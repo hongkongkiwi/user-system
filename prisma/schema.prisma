@@ -1,0 +1,256 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model Organisation {
+  id        String               @id @default(uuid())
+  name      String               @unique
+  address   OrganisationAddress?
+  groups    OrganisationGroup[]
+  // Updated Magic
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+}
+
+model OrganisationAddress {
+  id             String       @id @default(uuid())
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  organisationId String       @unique
+  address_line1  String?
+  address_line2  String?
+  address_line3  String?
+  city           String?
+  state          String?
+  postcode       String?
+  country        String?
+  verified       Boolean      @default(false)
+  // Updated Magic
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model OrganisationGroup {
+  id             String       @id @default(uuid())
+  name           String
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  organisationId String
+  users          User[]
+  // Updated Magic
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model User {
+  id                 String                @id @default(uuid())
+  organisationGroups OrganisationGroup[]
+  // Person Details
+  userPerson         UserPerson?
+  // Addresses
+  personAddress      UserAddress?          @relation("personAddress", fields: [personAddressId], references: [id])
+  billingAddress     UserAddress?          @relation("billingAddress", fields: [billingAddressId], references: [id])
+  billingAddressId   String?               @unique
+  personAddressId    String?               @unique
+  userAddress        UserAddress?
+  // Emails
+  userEmails         UserEmail[]
+  // Phones
+  userPhones         UserPhone[]
+  // Associated Credentials
+  credPassword       UserCredPassword?
+  credMagicLink      UserCredMagicLink?
+  // Identification
+  identNationalIds   UserIdentNationalId[]
+  identPassports     UserIdentPassport[]
+
+  userAuthRole UserAuthRole @default(USER)
+
+  // Updated Magic
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum UserAuthRole {
+  USER
+  ORG_ADMIN
+  SUPER_ADMIN
+}
+
+model UserCredPassword {
+  id     String @id @default(uuid())
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
+
+  password   String
+  hashType   UserCredPasswordType @default(BCRYPT)
+  saltRounds Int                  @default(31)
+  // Updated Magic
+  createdAt  DateTime             @default(now())
+  updatedAt  DateTime             @updatedAt
+}
+
+enum UserCredPasswordType {
+  BCRYPT
+}
+
+model UserCredMagicLink {
+  id         String   @id @default(uuid())
+  User       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String   @unique
+  magicToken String
+  expiresAt  DateTime
+  // Updated Magic
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model UserEmail {
+  id           String   @id @default(uuid())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String
+  emailAddress String   @unique
+  verified     Boolean  @default(false)
+  //  verifiedAt  Boolean @time
+  primary      Boolean  @default(false)
+  // Updated Magic
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model UserPhone {
+  id             String          @id @default(uuid())
+  User           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String
+  userPhoneTypes UserPhoneType[]
+  number         String
+  country        String
+  verified       Boolean         @default(false)
+  primary        Boolean         @default(false)
+  // Updated Magic
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@unique([number, country])
+}
+
+model UserPhoneType {
+  id        String            @id @default(uuid())
+  phone     UserPhone         @relation(fields: [phoneId], references: [id], onDelete: Cascade)
+  phoneId   String
+  tech      UserPhoneTypeTech
+  // Updated Magic
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
+
+enum UserPhoneTypeTech {
+  WHATSAPP
+  SMS
+  CALL
+}
+
+model UserPerson {
+  id            String                   @id @default(uuid())
+  user          User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String                   @unique
+  pronoun       String?
+  firstName     String?
+  middleName    String?
+  lastName      String?
+  preferredName String?
+  dateOfBirth   String?
+  citizenship   CountriesOnUserPersons[]
+  // Updated Magic
+  createdAt     DateTime                 @default(now())
+  updatedAt     DateTime                 @updatedAt
+}
+
+model CountriesOnUserPersons {
+  userPerson   UserPerson @relation(fields: [userPersonId], references: [id], onDelete: Cascade)
+  userPersonId String
+  country      Country    @relation(fields: [countryId], references: [countryCode])
+  countryId    Int
+  // Updated Magic
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@id([userPersonId, countryId])
+}
+
+model Country {
+  countryCode      Int                      @id
+  threeChar        String                   @unique
+  twoChar          String                   @unique
+  englishName      String                   @unique
+  phoneCountryCode Int
+  citizens         CountriesOnUserPersons[]
+  // Updated Magic
+  createdAt        DateTime                 @default(now())
+  updatedAt        DateTime                 @updatedAt
+}
+
+model UserIdentNationalId {
+  id        String    @id @default(uuid())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  type      String?
+  idNumber  String?
+  expiry    DateTime?
+  country   String?
+  verified  Boolean   @default(false)
+  // Updated Magic
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([type, idNumber, expiry, country])
+}
+
+model UserIdentPassport {
+  id               String   @id @default(uuid())
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId           String
+  passport_number  String?
+  passport_country String?
+  passport_expiry  String?
+  verified         Boolean  @default(false)
+  // Updated Magic
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([passport_number, passport_country, passport_expiry])
+}
+
+model UserAddress {
+  id               String @id @default(uuid())
+  user             User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId           String @unique
+  personAddress    User[] @relation("personAddress")
+  billingAddresses User[] @relation("billingAddress")
+
+  organisation  String?
+  care_of       String?
+  address_line1 String?
+  address_line2 String?
+  address_line3 String?
+  city          String?
+  state         String?
+  postcode      String?
+  country       String?
+  business      Boolean  @default(false)
+  verified      Boolean  @default(false)
+  // Updated Magic
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}

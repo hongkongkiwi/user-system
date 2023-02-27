@@ -1,0 +1,252 @@
+internal row ID,Country Name (usual),Country Name (short official),Country Name (alternative),Usual Country title,Oficial country name,Sovereignity,2char country code,3char country code,numeric code,internet TLD ,Tel. Country Code
+1,Afghanistan,Afghanistan,Afghanistan,,The Islamic Republic of Afghanistan,UN member state,AF,AFG,4,.af,+93
+2,Aland Islands,?land Islands,?land Islands,,?land,Finland,AX,ALA,248,.ax,
+3,Albania,Albania,Albania,,The Republic of Albania,UN member state,AL,ALB,8,.al,+355
+4,Algeria,Algeria,Algeria,,The People's Democratic Republic of Algeria,UN member state,DZ,DZA,12,.dz,+213
+5,American Samoa,American Samoa,American Samoa,,The Territory of American Samoa,United States,AS,ASM,16,.as,+1684
+6,Andorra,Andorra,Andorra,,The Principality of Andorra,UN member state,AD,AND,20,.ad,+376
+7,Angola,Angola,Angola,,The Republic of Angola,UN member state,AO,AGO,24,.ao,+244
+8,Anguilla,Anguilla,Anguilla,,Anguilla,United Kingdom,AI,AIA,660,.ai,+1264
+9,Antarctica,Antarctica,Antarctica,,All land and ice shelves south of the 60th parallel south,Antarctic Treaty,AQ,ATA,10,.aq,
+10,Antigua and Barbuda,Antigua and Barbuda,Antigua and Barbuda,,Antigua and Barbuda,UN member state,AG,ATG,28,.ag,
+11,Argentina,Argentina,Argentina,,The Argentine Republic,UN member state,AR,ARG,32,.ar,+54
+12,Armenia,Armenia,Armenia,,The Republic of Armenia,UN member state,AM,ARM,51,.am,+374
+13,Aruba,Aruba,Aruba,,Aruba,Netherlands,AW,ABW,533,.aw,+297
+14,Australia,Australia,Australia,,The Commonwealth of Australia,UN member state,AU,AUS,36,.au,+61
+15,Austria,Austria,Austria,,The Republic of Austria,UN member state,AT,AUT,40,.at,+43
+16,Azerbaijan,Azerbaijan,Azerbaijan,,The Republic of Azerbaijan,UN member state,AZ,AZE,31,.az,+994
+17,Bahrain,Bahrain,Bahrain,,The Kingdom of Bahrain,UN member state,BH,BHR,48,.bh,+973
+18,Bangladesh,Bangladesh,Bangladesh,,The People's Republic of Bangladesh,UN member state,BD,BGD,50,.bd,+880
+19,Barbados,Barbados,Barbados,,Barbados,UN member state,BB,BRB,52,.bb,+1
+20,Belarus,Belarus,Belarus,,The Republic of Belarus,UN member state,BY,BLR,112,.by,+375
+21,Belgium,Belgium,Belgium,,The Kingdom of Belgium,UN member state,BE,BEL,56,.be,+32
+22,Belize,Belize,Belize,,Belize,UN member state,BZ,BLZ,84,.bz,+501
+23,Benin,Benin,Benin,,The Republic of Benin,UN member state,BJ,BEN,204,.bj,+229
+24,Bermuda,Bermuda,Bermuda,,Bermuda,United Kingdom,BM,BMU,60,.bm,+1
+25,Bhutan,Bhutan,Bhutan,,The Kingdom of Bhutan,UN member state,BT,BTN,64,.bt,+975
+26,Bolivia,Bolivia,Plurinational State of Bolivia,Plurinational State of,The Plurinational State of Bolivia,UN member state,BO,BOL,68,.bo,+591
+27,Bonaire,Bonaire,Bonaire,,"Bonaire, Sint Eustatius and Saba",Netherlands,BQ,BES,535,.bq,
+28,Bosnia and Herzegovina,Bosnia and Herzegovina,Bosnia and Herzegovina,,Bosnia and Herzegovina,UN member state,BA,BIH,70,.ba,+387
+29,Botswana,Botswana,Botswana,,The Republic of Botswana,UN member state,BW,BWA,72,.bw,+267
+30,Bouvet Island,Bouvet Island,Bouvet Island,,Bouvet Island,Norway,BV,BVT,74,,
+31,Brazil,Brazil,Brazil,,The Federative Republic of Brazil,UN member state,BR,BRA,76,.br,+55
+32,British Indian Ocean Territory,British Indian Ocean Territory,the British Indian Ocean Territory,the,The British Indian Ocean Territory,United Kingdom,IO,IOT,86,.io,
+33,Virgin Islands,Virgin Islands,British Virgin Islands,British,The Virgin Islands,United Kingdom,VG,VGB,92,.vg,+1284
+34,Brunei,Brunei Darussalam?,Brunei Darussalam?,,"The Nation of Brunei, the Abode of Peace",UN member state,BN,BRN,96,.bn,+673
+35,Bulgaria,Bulgaria,Bulgaria,,The Republic of Bulgaria,UN member state,BG,BGR,100,.bg,+359
+36,Burkina Faso,Burkina Faso,Burkina Faso,,Burkina Faso,UN member state,BF,BFA,854,.bf,+226
+37,Burundi,Burundi,Burundi,,The Republic of Burundi,UN member state,BI,BDI,108,.bi,+257
+38,Cambodia,Cambodia,Cambodia,,The Kingdom of Cambodia,UN member state,KH,KHM,116,.kh,+855
+39,Cameroon,Cameroon,Cameroon,,The Republic of Cameroon,UN member state,CM,CMR,120,.cm,+237
+40,Canada,Canada,Canada,,Canada,UN member state,CA,CAN,124,.ca,+1
+41,Cabo Verde?,Cabo Verde?,Cabo Verde?,,The Republic of Cabo Verde,UN member state,CV,CPV,132,.cv,+238
+42,Cayman Islands,Cayman Islands,the Cayman Islands,the,The Cayman Islands,United Kingdom,KY,CYM,136,.ky,+1345
+43,Central African Republic,Central African Republic,the Central African Republic,the,The Central African Republic,UN member state,CF,CAF,140,.cf,+236
+44,Cocos,Cocos,the Cocos Keeling Islands Cocos,the Cocos Keeling Islands,The Territory of Cocos (Keeling) Islands,Australia,CC,CCK,166,.cc,
+45,Saint Martin,Saint Martin,French part Saint Martin,French part,The Collectivity of Saint-Martin,France,MF,MAF,663,.mf,+1599
+46,Colombia,Colombia,Colombia,,The Republic of Colombia,UN member state,CO,COL,170,.co,+57
+47,Comoros,Comoros,the Comoros,the,The Union of the Comoros,UN member state,KM,COM,174,.km,+269
+48,Cook Islands,Cook Islands,the Cook Islands,the,The Cook Islands,New Zealand,CK,COK,184,.ck,+682
+49,Costa Rica,Costa Rica,Costa Rica,,The Republic of Costa Rica,UN member state,CR,CRI,188,.cr,+506
+50,Croatia,Croatia,Croatia,,The Republic of Croatia,UN member state,HR,HRV,191,.hr,+385
+51,Cuba,Cuba,Cuba,,The Republic of Cuba,UN member state,CU,CUB,192,.cu,+53
+52,Curacao,Curaçao,Curaçao,,The Country of Curaçao,Netherlands,CW,CUW,531,.cw,+599
+53,Cyprus,Cyprus,Cyprus,,The Republic of Cyprus,UN member state,CY,CYP,196,.cy,+357
+54,Czechia,Czechia,Czech Republic,,The Czech Republic,UN member state,CZ,CZE,203,.cz,+420
+55,Congo Kinshasa,Congo,the Democratic Republic of the Congo,the Democratic Republic of the,The Democratic Republic of the Congo,UN member state,CD,COD,180,.cd,+243
+56,Denmark,Denmark,Denmark,,The Kingdom of Denmark,UN member state,DK,DNK,208,.dk,+45
+57,Djibouti,Djibouti,Djibouti,,The Republic of Djibouti,UN member state,DJ,DJI,262,.dj,+253
+58,Dominica,Dominica,Dominica,,The Commonwealth of Dominica,UN member state,DM,DMA,212,.dm,+1
+59,Dominican Republic,Dominican Republic,the Dominican Republic,the,The Dominican Republic,UN member state,DO,DOM,214,.do,+1
+60,Timor Leste,Timor-Leste,Timor-Leste,,The Democratic Republic of Timor-Leste,UN member state,TL,TLS,626,.tl,+670
+61,Ecuador,Ecuador,Ecuador,,The Republic of Ecuador,UN member state,EC,ECU,218,.ec,+593
+62,Egypt,Egypt,Egypt,,The Arab Republic of Egypt,UN member state,EG,EGY,818,.eg,+20
+63,El Salvador,El Salvador,El Salvador,,The Republic of El Salvador,UN member state,SV,SLV,222,.sv,+503
+64,Equatorial Guinea,Equatorial Guinea,Equatorial Guinea,,The Republic of Equatorial Guinea,UN member state,GQ,GNQ,226,.gq,+240
+65,Eritrea,Eritrea,Eritrea,,The State of Eritrea,UN member state,ER,ERI,232,.er,+291
+66,Estonia,Estonia,Estonia,,The Republic of Estonia,UN member state,EE,EST,233,.ee,+372
+67,Eswatini,Eswatini,Eswatini,,The Kingdom of Eswatini,UN member state,SZ,SWZ,748,.sz,+268
+68,Ethiopia,Ethiopia,Ethiopia,,The Federal Democratic Republic of Ethiopia,UN member state,ET,ETH,231,.et,+251
+69,Falkland Islands,Falkland Islands,Malvinas,the Malvinas,The Falkland Islands,United Kingdom,FK,FLK,238,.fk,+500
+70,Faroe Islands,Fareoe Islands,the Faroe Islands,the,The Faroe Islands,Denmark,FO,FRO,234,.fo,+298
+71,Micronesia,Micronesia,Federated States of Micronesia,Federated States of,The Federated States of Micronesia,UN member state,FM,FSM,583,.fm,+691
+72,Fiji,Fiji,Fiji,,The Republic of Fiji,UN member state,FJ,FJI,242,.fj,+679
+73,Finland,Finland,Finland,,The Republic of Finland,UN member state,FI,FIN,246,.fi,+358
+74,France,France,France,,The French Republic,UN member state,FR,FRA,250,.fr,+33
+75,French Guiana,French Guiana,French Guiana,,Guyane,France,GF,GUF,254,.gf,
+76,French Polynesia,French Polynesia,French Polynesia,,French Polynesia,France,PF,PYF,258,.pf,+689
+77,French Southern Territories,French Southern Territories,the French Southern Territories,the,The French Southern and Antarctic Lands,France,TF,ATF,260,.tf,
+78,Gabon,Gabon,Gabon,,The Gabonese Republic,UN member state,GA,GAB,266,.ga,+241
+79,Georgia,Georgia,Georgia,,Georgia,UN member state,GE,GEO,268,.ge,+995
+80,Germany,Germany,Germany,,The Federal Republic of Germany,UN member state,DE,DEU,276,.de,+49
+81,Ghana,Ghana,Ghana,,The Republic of Ghana,UN member state,GH,GHA,288,.gh,+233
+82,Gibraltar,Gibraltar,Gibraltar,,Gibraltar,United Kingdom,GI,GIB,292,.gi,+350
+83,Greece,Greece,Greece,,The Hellenic Republic,UN member state,GR,GRC,300,.gr,+30
+84,Greenland,Greenland,Greenland,,Kalaallit Nunaat,Denmark,GL,GRL,304,.gl,+299
+85,Grenada,Grenada,Grenada,,Grenada,UN member state,GD,GRD,308,.gd,
+86,Guadeloupe,Guadeloupe,Guadeloupe,,Guadeloupe,France,GP,GLP,312,.gp,+590
+87,Guam,Guam,Guam,,The Territory of Guam,United States,GU,GUM,316,.gu,+1671
+88,Guatemala,Guatemala,Guatemala,,The Republic of Guatemala,UN member state,GT,GTM,320,.gt,+502
+89,Guernsey,Guernsey,Guernsey,,The Bailiwick of Guernsey,British Crown,GG,GGY,831,.gg,
+90,Guinea,Guinea,Guinea,,The Republic of Guinea,UN member state,GN,GIN,324,.gn,+224
+91,Guinea Bissau,Guinea-Bissau,Guinea-Bissau,,The Republic of Guinea-Bissau,UN member state,GW,GNB,624,.gw,+245
+92,Guyana,Guyana,Guyana,,The Co-operative Republic of Guyana,UN member state,GY,GUY,328,.gy,+592
+93,Haiti,Haiti,Haiti,,The Republic of Haiti,UN member state,HT,HTI,332,.ht,+509
+94,Heard Island and McDonald Islands,Heard Island and McDonald Islands,Heard Island and McDonald Islands,,The Territory of Heard Island and McDonald Islands,Australia,HM,HMD,334,.hm,
+95,Vatican City,Holy See,the Holy See,the,The Holy See,UN observer,VA,VAT,336,.va,+39
+96,Honduras,Honduras,Honduras,,The Republic of Honduras,UN member state,HN,HND,340,.hn,+504
+97,Hong Kong,Hong Kong,Hong Kong,,The Hong Kong Special Administrative Region of China,China,HK,HKG,344,.hk,+852
+98,Hungary,Hungary,Hungary,,Hungary,UN member state,HU,HUN,348,.hu,+36
+99,Chad,Chad,Chad,,The Republic of Chad,UN member state,TD,TCD,148,.td,
+100,Chile,Chile,Chile,,The Republic of Chile,UN member state,CL,CHL,152,.cl,+56
+101,China,China,China,,The People's Republic of China,UN member state,CN,CHN,156,.cn,+86
+102,Christmas Island,Christmas Island,Christmas Island,,The Territory of Christmas Island,Australia,CX,CXR,162,.cx,
+103,Iceland,Iceland,Iceland,,Iceland,UN member state,IS,ISL,352,.is,+354
+104,India,India,India,,The Republic of India,UN member state,IN,IND,356,.in,+91
+105,Indonesia,Indonesia,Indonesia,,The Republic of Indonesia,UN member state,ID,IDN,360,.id,+62
+106,Iran,Iran,Islamic Republic of Iran,Islamic Republic of,The Islamic Republic of Iran,UN member state,IR,IRN,364,.ir,+98
+107,Iraq,Iraq,Iraq,,The Republic of Iraq,UN member state,IQ,IRQ,368,.iq,+964
+108,Isle of Man,Isle of Man,Isle of Man,,The Isle of Man,British Crown,IM,IMN,833,.im,+44
+109,Israel,Israel,Israel,,The State of Israel,UN member state,IL,ISR,376,.il,+972
+110,Italy,Italy,Italy,,The Italian Republic,UN member state,IT,ITA,380,.it,+39
+111,Cote d'Ivoire,Côte d'Ivoire,Côte d'Ivoire,,The Republic of Côte d'Ivoire,UN member state,CI,CIV,384,.ci,+225
+112,Jamaica,Jamaica,Jamaica,,Jamaica,UN member state,JM,JAM,388,.jm,+1
+113,Japan,Japan,Japan,,Japan,UN member state,JP,JPN,392,.jp,+81
+114,Jersey,Jersey,Jersey,,The Bailiwick of Jersey,British Crown,JE,JEY,832,.je,
+115,Jordan,Jordan,Jordan,,The Hashemite Kingdom of Jordan,UN member state,JO,JOR,400,.jo,+962
+116,Kazakhstan,Kazakhstan,Kazakhstan,,The Republic of Kazakhstan,UN member state,KZ,KAZ,398,.kz,+7
+117,Kenya,Kenya,Kenya,,The Republic of Kenya,UN member state,KE,KEN,404,.ke,+254
+118,Kiribati,Kiribati,Kiribati,,The Republic of Kiribati,UN member state,KI,KIR,296,.ki,+686
+119,Kuwait,Kuwait,Kuwait,,The State of Kuwait,UN member state,KW,KWT,414,.kw,+965
+120,Kyrgyzstan,Kyrgyzstan,Kyrgyzstan,,The Kyrgyz Republic,UN member state,KG,KGZ,417,.kg,+996
+121,Laos,Lao People's Democratic Republic,the Lao People's Democratic Republic,the,The Lao People's Democratic Republic,UN member state,LA,LAO,418,.la,+856
+122,Latvia,Latvia,Latvia,,The Republic of Latvia,UN member state,LV,LVA,428,.lv,+371
+123,Lebanon,Lebanon,Lebanon,,The Lebanese Republic,UN member state,LB,LBN,422,.lb,+961
+124,Lesotho,Lesotho,Lesotho,,The Kingdom of Lesotho,UN member state,LS,LSO,426,.ls,+266
+125,Liberia,Liberia,Liberia,,The Republic of Liberia,UN member state,LR,LBR,430,.lr,+231
+126,Libya,Libya,Libya,,The State of Libya,UN member state,LY,LBY,434,.ly,+218
+127,Liechtenstein,Liechtenstein,Liechtenstein,,The Principality of Liechtenstein,UN member state,LI,LIE,438,.li,+423
+128,Lithuania,Lithuania,Lithuania,,The Republic of Lithuania,UN member state,LT,LTU,440,.lt,+370
+129,Luxembourg,Luxembourg,Luxembourg,,The Grand Duchy of Luxembourg,UN member state,LU,LUX,442,.lu,+352
+130,Macao,Macao,Macao,,Macao Special Administrative Region of China,China,MO,MAC,446,.mo,+853
+131,Madagascar,Madagascar,Madagascar,,The Republic of Madagascar,UN member state,MG,MDG,450,.mg,+261
+132,Malawi,Malawi,Malawi,,The Republic of Malawi,UN member state,MW,MWI,454,.mw,+265
+133,Malaysia,Malaysia,Malaysia,,Malaysia,UN member state,MY,MYS,458,.my,+60
+134,Maldives,Maldives,Maldives,,The Republic of Maldives,UN member state,MV,MDV,462,.mv,+960
+135,Mali,Mali,Mali,,The Republic of Mali,UN member state,ML,MLI,466,.ml,+223
+136,Malta,Malta,Malta,,The Republic of Malta,UN member state,MT,MLT,470,.mt,+356
+137,Marshall Islands,Marshall Islands,the Marshall Islands,the,The Republic of the Marshall Islands,UN member state,MH,MHL,584,.mh,+692
+138,Martinique,Martinique,Martinique,,Martinique,France,MQ,MTQ,474,.mq,
+139,Mauritania,Mauritania,Mauritania,,The Islamic Republic of Mauritania,UN member state,MR,MRT,478,.mr,+222
+140,Mauritius,Mauritius,Mauritius,,The Republic of Mauritius,UN member state,MU,MUS,480,.mu,+230
+141,Mayotte,Mayotte,Mayotte,,The Department of Mayotte,France,YT,MYT,175,.yt,
+142,Mexico,Mexico,Mexico,,The United Mexican States,UN member state,MX,MEX,484,.mx,+52
+143,Moldova,Moldova,the Republic of Moldova,the Republic of,The Republic of Moldova,UN member state,MD,MDA,498,.md,+373
+144,Monaco,Monaco,Monaco,,The Principality of Monaco,UN member state,MC,MCO,492,.mc,+377
+145,Mongolia,Mongolia,Mongolia,,The State of Mongolia,UN member state,MN,MNG,496,.mn,+976
+146,Montenegro,Montenegro,Montenegro,,Montenegro,UN member state,ME,MNE,499,.me,+382
+147,Montserrat,Montserrat,Montserrat,,Montserrat,United Kingdom,MS,MSR,500,.ms,+1664
+148,Morocco,Morocco,Morocco,,The Kingdom of Morocco,UN member state,MA,MAR,504,.ma,+212
+149,Mozambique,Mozambique,Mozambique,,The Republic of Mozambique,UN member state,MZ,MOZ,508,.mz,+258
+150,Myanmar,Myanmar,Myanmar,,The Republic of the Union of Myanmar,UN member state,MM,MMR,104,.mm,+95
+151,Namibia,Namibia,Namibia,,The Republic of Namibia,UN member state,NA,NAM,516,.na,+264
+152,Nauru,Nauru,Nauru,,The Republic of Nauru,UN member state,NR,NRU,520,.nr,+674
+153,Nepal,Nepal,Nepal,,The Federal Democratic Republic of Nepal,UN member state,NP,NPL,524,.np,+977
+154,Netherlands,Netherlands,the Netherlands,the,The Kingdom of the Netherlands,UN member state,NL,NLD,528,.nl,+31
+155,New Caledonia,New Caledonia,New Caledonia,,New Caledonia,France,NC,NCL,540,.nc,+687
+156,New Zealand,New Zealand,New Zealand,,New Zealand,UN member state,NZ,NZL,554,.nz,+64
+157,Nicaragua,Nicaragua,Nicaragua,,The Republic of Nicaragua,UN member state,NI,NIC,558,.ni,+505
+158,Niger,Niger,the Niger,the,The Republic of the Niger,UN member state,NE,NER,562,.ne,+227
+159,Nigeria,Nigeria,Nigeria,,The Federal Republic of Nigeria,UN member state,NG,NGA,566,.ng,+234
+160,Niue,Niue,Niue,,Niue,New Zealand,NU,NIU,570,.nu,+683
+161,Norfolk Island,Norfolk Island,Norfolk Island,,The Territory of Norfolk Island,Australia,NF,NFK,574,.nf,+672
+162,North Korea,Korea,the Democratic People's Republic of Korea,the Democratic People's Republic of,The Democratic People's Republic of Korea,UN member state,KP,PRK,408,.kp,+850
+163,North Macedonia,North Macedonia,North Macedonia,,Republic of North Macedonia,UN member state,MK,MKD,807,.mk,+389
+164,Northern Mariana Islands,Northern Mariana Islands,the Northern Mariana Islands,the,The Commonwealth of the Northern Mariana Islands,United States,MP,MNP,580,.mp,+1670
+165,Norway,Norway,Norway,,The Kingdom of Norway,UN member state,NO,NOR,578,.no,+47
+166,Oman,Oman,Oman,,The Sultanate of Oman,UN member state,OM,OMN,512,.om,+968
+167,Pakistan,Pakistan,Pakistan,,The Islamic Republic of Pakistan,UN member state,PK,PAK,586,.pk,+92
+168,Palau,Palau,Palau,,The Republic of Palau,UN member state,PW,PLW,585,.pw,+680
+169,Panama,Panama,Panama,,The Republic of Panamá,UN member state,PA,PAN,591,.pa,+507
+170,Papua New Guinea,Papua New Guinea,Papua New Guinea,,The Independent State of Papua New Guinea,UN member state,PG,PNG,598,.pg,+675
+171,Paraguay,Paraguay,Paraguay,,The Republic of Paraguay,UN member state,PY,PRY,600,.py,+595
+172,Peru,Peru,Peru,,The Republic of Perú,UN member state,PE,PER,604,.pe,+51
+173,Philippines,Philippines,the Philippines,the,The Republic of the Philippines,UN member state,PH,PHL,608,.ph,+63
+174,Pitcairn,Pitcairn,Pitcairn,,"The Pitcairn, Henderson, Ducie and Oeno Islands",United Kingdom,PN,PCN,612,.pn,+870
+175,Poland,Poland,Poland,,The Republic of Poland,UN member state,PL,POL,616,.pl,+48
+176,Portugal,Portugal,Portugal,,The Portuguese Republic,UN member state,PT,PRT,620,.pt,+351
+177,Puerto Rico,Puerto Rico,Puerto Rico,,The Commonwealth of Puerto Rico,United States,PR,PRI,630,.pr,+1
+178,Qatar,Qatar,Qatar,,The State of Qatar,UN member state,QA,QAT,634,.qa,+974
+179,Ireland,Ireland,Ireland,,Ireland,UN member state,IE,IRL,372,.ie,+353
+180,Congo Brazzaville,Congo,the Congo,the,The Republic of the Congo,UN member state,CG,COG,178,.cg,+242
+181,Reunion,Réunion,Réunion,,Réunion,France,RE,REU,638,.re,+262
+182,Romania,Romania,Romania,,Romania,UN member state,RO,ROU,642,.ro,+40
+183,Russia,Russian Federation,the Russian Federation,the,The Russian Federation,UN member state,RU,RUS,643,.ru,+7
+184,Rwanda,Rwanda,Rwanda,,The Republic of Rwanda,UN member state,RW,RWA,646,.rw,+250
+185,Saint Barthelemy,Saint Barthélemy,Saint Barthélemy,,The Collectivity of Saint-Barthélemy,France,BL,BLM,652,.bl,+590
+186,Saint Helena,Saint Helena,Saint Helena,,"Saint Helena, Ascension and Tristan da Cunha",United Kingdom,SH,SHN,654,.sh,+290
+187,Saint Kitts and Nevis,Saint Kitts and Nevis,Saint Kitts and Nevis,,Saint Kitts and Nevis,UN member state,KN,KNA,659,.kn,+1
+188,Saint Lucia,Saint Lucia,Saint Lucia,,Saint Lucia,UN member state,LC,LCA,662,.lc,+1
+189,Saint Pierre and Miquelon,Saint Pierre and Miquelon,Saint Pierre and Miquelon,,The Overseas Collectivity of Saint-Pierre and Miquelon,France,PM,SPM,666,.pm,+508
+190,Saint Vincent and the Grenadines,Saint Vincent and the Grenadines,Saint Vincent and the Grenadines,,Saint Vincent and the Grenadines,UN member state,VC,VCT,670,.vc,+1
+191,Samoa,Samoa,Samoa,,The Independent State of Samoa,UN member state,WS,WSM,882,.ws,+685
+192,San Marino,San Marino,San Marino,,The Republic of San Marino,UN member state,SM,SMR,674,.sm,+378
+193,Sao Tome and Principe,Sao Tome and Principe,Sao Tome and Principe,,The Democratic Republic of S?o Tomé and Príncipe,UN member state,ST,STP,678,.st,+239
+194,Saudi Arabia,Saudi Arabia,Saudi Arabia,,The Kingdom of Saudi Arabia,UN member state,SA,SAU,682,.sa,+966
+195,Senegal,Senegal,Senegal,,The Republic of Senegal,UN member state,SN,SEN,686,.sn,+221
+196,Serbia,Serbia,Serbia,,The Republic of Serbia,UN member state,RS,SRB,688,.rs,+381
+197,Seychelles,Seychelles,Seychelles,,The Republic of Seychelles,UN member state,SC,SYC,690,.sc,+248
+198,Sierra Leone,Sierra Leone,Sierra Leone,,The Republic of Sierra Leone,UN member state,SL,SLE,694,.sl,+232
+199,Singapore,Singapore,Singapore,,The Republic of Singapore,UN member state,SG,SGP,702,.sg,+65
+200,Sint Maarten,Sint Maarten,Dutch part Sint Maarten,Dutch part,Sint Maarten,Netherlands,SX,SXM,534,.sx,
+201,Slovakia,Slovakia,Slovakia,,The Slovak Republic,UN member state,SK,SVK,703,.sk,+421
+202,Slovenia,Slovenia,Slovenia,,The Republic of Slovenia,UN member state,SI,SVN,705,.si,+386
+203,Solomon Islands,Solomon Islands,Solomon Islands,,The Solomon Islands,UN member state,SB,SLB,90,.sb,+677
+204,Somalia,Somalia,Somalia,,The Federal Republic of Somalia,UN member state,SO,SOM,706,.so,+252
+205,South Africa,South Africa,South Africa,,The Republic of South Africa,UN member state,ZA,ZAF,710,.za,+27
+206,South Georgia and the South Sandwich Islands,South Georgia and the South Sandwich Islands,South Georgia and the South Sandwich Islands,,South Georgia and the South Sandwich Islands,United Kingdom,GS,SGS,239,.gs,
+207,South Korea,Korea,the Republic of Korea,the Republic of,The Republic of Korea,UN member state,KR,KOR,410,.kr,+82
+208,South Sudan,South Sudan,South Sudan,,The Republic of South Sudan,UN member state,SS,SSD,728,.ss,+211
+209,Spain,Spain,Spain,,The Kingdom of Spain,UN member state,ES,ESP,724,.es,+34
+210,Sri Lanka,Sri Lanka,Sri Lanka,,The Democratic Socialist Republic of Sri Lanka,UN member state,LK,LKA,144,.lk,+94
+211,Palestine,Palestine,"Palestine, State of",,The State of Palestine,UN observer,PS,PSE,275,.ps,
+212,Sudan,Sudan,the Sudan,the,The Republic of the Sudan,UN member state,SD,SDN,729,.sd,+249
+213,Suriname,Suriname,Suriname,,The Republic of Suriname,UN member state,SR,SUR,740,.sr,+597
+214,Svalbard,Svalbard,Svalbard,,Svalbard and Jan Mayen,Norway,SJ,SJM,744,,
+215,Sweden,Sweden,Sweden,,The Kingdom of Sweden,UN member state,SE,SWE,752,.se,+46
+216,Switzerland,Switzerland,Switzerland,,The Swiss Confederation,UN member state,CH,CHE,756,.ch,+41
+217,Syria,Syrian Arab Republic,the Syrian Arab Republic,the,The Syrian Arab Republic,UN member state,SY,SYR,760,.sy,+963
+218,Taiwan,Taiwan,Province of China Taiwan,Province of China,The Republic of China,disputed,TW,TWN,158,.tw,+886
+219,Tajikistan,Tajikistan,Tajikistan,,The Republic of Tajikistan,UN member state,TJ,TJK,762,.tj,+992
+220,Tanzania,"Tanzania, the United Republic of","Tanzania, the United Republic of",,The United Republic of Tanzania,UN member state,TZ,TZA,834,.tz,+255
+221,Thailand,Thailand,Thailand,,The Kingdom of Thailand,UN member state,TH,THA,764,.th,+66
+222,Bahamas,Bahamas,the Bahamas,the,The Commonwealth of The Bahamas,UN member state,BS,BHS,44,.bs,+1
+223,Gambia,Gambia,the Gambia,the,The Republic of The Gambia,UN member state,GM,GMB,270,.gm,+220
+224,Togo,Togo,Togo,,The Togolese Republic,UN member state,TG,TGO,768,.tg,+228
+225,Tokelau,Tokelau,Tokelau,,Tokelau,New Zealand,TK,TKL,772,.tk,+690
+226,Tonga,Tonga,Tonga,,The Kingdom of Tonga,UN member state,TO,TON,776,.to,
+227,Trinidad and Tobago,Trinidad and Tobago,Trinidad and Tobago,,The Republic of Trinidad and Tobago,UN member state,TT,TTO,780,.tt,+1
+228,Tunisia,Tunisia,Tunisia,,The Republic of Tunisia,UN member state,TN,TUN,788,.tn,+216
+229,Turkey,Turkey,Turkey,,The Republic of Turkey,UN member state,TR,TUR,792,.tr,+90
+230,Turkmenistan,Turkmenistan,Turkmenistan,,Turkmenistan,UN member state,TM,TKM,795,.tm,+993
+231,Turks and Caicos Islands,Turks and Caicos Islands,the Turks and Caicos Islands,the,The Turks and Caicos Islands,United Kingdom,TC,TCA,796,.tc,
+232,Tuvalu,Tuvalu,Tuvalu,,Tuvalu,UN member state,TV,TUV,798,.tv,+688
+233,Uganda,Uganda,Uganda,,The Republic of Uganda,UN member state,UG,UGA,800,.ug,+256
+234,Ukraine,Ukraine,Ukraine,,Ukraine,UN member state,UA,UKR,804,.ua,+380
+235,United Arab Emirates,United Arab Emirates,the United Arab Emirates,the,The United Arab Emirates,UN member state,AE,ARE,784,.ae,+971
+236,United Kingdom,United Kingdom of Great Britain and Northern Ireland,the United Kingdom of Great Britain and Northern Ireland,the,The United Kingdom of Great Britain and Northern Ireland,UN member state,GB,GBR,826,.uk?,+44
+237,Virgin Islands,Virgin Islands,U.S. Virgin Islands,U.S.,The Virgin Islands of the United States,United States,VI,VIR,850,.vi,
+238,United States Minor Outlying Islands,United States Minor Outlying Islands,the United States Minor Outlying Islands,the,"Baker Island, Howland Island, Jarvis Island, Johnston Atoll, Kingman Reef, Midway Atoll, Navassa Island, Palmyra Atoll, and Wake Island",United States,UM,UMI,581,,
+239,USA,United States of America,the United States of America,the,The United States of America,UN member state,US,USA,840,.us,+1
+240,Uruguay,Uruguay,Uruguay,,The Oriental Republic of Uruguay,UN member state,UY,URY,858,.uy,+598
+241,Uzbekistan,Uzbekistan,Uzbekistan,,The Republic of Uzbekistan,UN member state,UZ,UZB,860,.uz,+998
+242,Vanuatu,Vanuatu,Vanuatu,,The Republic of Vanuatu,UN member state,VU,VUT,548,.vu,+678
+243,Venezuela,Venezuela,Bolivarian Republic of Venezuela,Bolivarian Republic of,The Bolivarian Republic of Venezuela,UN member state,VE,VEN,862,.ve,+58
+244,Vietnam,Viet Nam,Viet Nam,,The Socialist Republic of Viet Nam,UN member state,VN,VNM,704,.vn,+84
+245,Wallis and Futuna,Wallis and Futuna,Wallis and Futuna,,The Territory of the Wallis and Futuna Islands,France,WF,WLF,876,.wf,
+246,Western Sahara,Western Sahara,Western Sahara,,The Sahrawi Arab Democratic Republic,disputed,EH,ESH,732,,+212
+247,Yemen,Yemen,Yemen,,The Republic of Yemen,UN member state,YE,YEM,887,.ye,+967
+248,Zambia,Zambia,Zambia,,The Republic of Zambia,UN member state,ZM,ZMB,894,.zm,+260
+249,Zimbabwe,Zimbabwe,Zimbabwe,,The Republic of Zimbabwe,UN member state,ZW,ZWE,716,.zw,+263
+250,Kosovo,Kosovo,Kosovo,,The Republic of Kosovo,disputed,XK,XKX,383,.kx,+381
+251,Netherlands Antilles,Netherlands Antilles,Dutch Antilles,,The Netherlands Antilles,disputed,AN,ANT,530,.an,
