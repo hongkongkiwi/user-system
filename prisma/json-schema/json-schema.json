@@ -1,0 +1,758 @@
+{
+  "$id": "prisma",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Organisation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "organisationRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/OrganisationAccountRole"
+          }
+        },
+        "friendlyName": {
+          "type": "string"
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/Project"
+          }
+        },
+        "addresses": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/OrganisationAddress"
+          }
+        },
+        "isVerified": {
+          "type": "boolean",
+          "default": false
+        },
+        "isPendingDelete": {
+          "type": "boolean",
+          "default": false
+        },
+        "pendingDeleteAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "OrganisationAddress": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "organisation": {
+          "$ref": "prisma#/definitions/Organisation"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address_line1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address_line2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address_line3": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "postcode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "country": {
+          "$ref": "prisma#/definitions/Country"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "default": false
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "projectRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/ProjectAccountRole"
+          }
+        },
+        "organisation": {
+          "$ref": "prisma#/definitions/Organisation"
+        },
+        "friendlyName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/Product"
+          }
+        },
+        "pendingDelete": {
+          "type": "boolean",
+          "default": false
+        },
+        "pendingDeleteAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "friendlyName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "project": {
+          "$ref": "prisma#/definitions/Project"
+        },
+        "pendingDelete": {
+          "type": "boolean",
+          "default": false
+        },
+        "pendingDeleteAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "OrganisationAccountRole": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "account": {
+          "$ref": "prisma#/definitions/Account"
+        },
+        "organisation": {
+          "$ref": "prisma#/definitions/Organisation"
+        },
+        "role": {
+          "type": "string",
+          "default": "NO_ACCESS",
+          "enum": [
+            "OWNER",
+            "READ_WRITE",
+            "READ_ONLY",
+            "NO_ACCESS"
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ProjectAccountRole": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "account": {
+          "$ref": "prisma#/definitions/Account"
+        },
+        "project": {
+          "$ref": "prisma#/definitions/Project"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "OWNER",
+            "READ_WRITE",
+            "READ_ONLY"
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Account": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "organisationRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/OrganisationAccountRole"
+          }
+        },
+        "projectRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/ProjectAccountRole"
+          }
+        },
+        "accountHuman": {
+          "anyOf": [
+            {
+              "$ref": "prisma#/definitions/AccountHuman"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "physicalAddress": {
+          "anyOf": [
+            {
+              "$ref": "prisma#/definitions/AccountAddress"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "billingAddress": {
+          "anyOf": [
+            {
+              "$ref": "prisma#/definitions/AccountAddress"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "accountEmails": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/AccountEmail"
+          }
+        },
+        "authPassword": {
+          "anyOf": [
+            {
+              "$ref": "prisma#/definitions/AccountAuthPassword"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kycNationalCards": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/AccountKycNationalCard"
+          }
+        },
+        "kycPassports": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/AccountKycPassport"
+          }
+        },
+        "username": {
+          "type": "string"
+        },
+        "pendingDelete": {
+          "type": "boolean",
+          "default": false
+        },
+        "pendingDeleteAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "AccountHuman": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "account": {
+          "$ref": "prisma#/definitions/Account"
+        },
+        "pronoun": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "preferredName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dateOfBirth": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "AccountAuthPassword": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "account": {
+          "$ref": "prisma#/definitions/Account"
+        },
+        "password": {
+          "type": "string"
+        },
+        "hashType": {
+          "type": "string",
+          "default": "BCRYPT",
+          "enum": [
+            "BCRYPT"
+          ]
+        },
+        "saltRounds": {
+          "type": "integer",
+          "default": 31
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "AccountEmail": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "account": {
+          "$ref": "prisma#/definitions/Account"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "boolean",
+          "default": false
+        },
+        "primary": {
+          "type": "boolean",
+          "default": false
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Country": {
+      "type": "object",
+      "properties": {
+        "countryCode": {
+          "type": "integer"
+        },
+        "threeChar": {
+          "type": "string"
+        },
+        "twoChar": {
+          "type": "string"
+        },
+        "englishName": {
+          "type": "string"
+        },
+        "phoneCountryCode": {
+          "type": "integer"
+        },
+        "accountKycNationalCards": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/AccountKycNationalCard"
+          }
+        },
+        "accountKycPassports": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/AccountKycPassport"
+          }
+        },
+        "accountAddresses": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/AccountAddress"
+          }
+        },
+        "organisationAddress": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/OrganisationAddress"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "AccountKycNationalCard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "account": {
+          "$ref": "prisma#/definitions/Account"
+        },
+        "country": {
+          "$ref": "prisma#/definitions/Country"
+        },
+        "nationalCardType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nationalCardNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "issuedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "expiresAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "default": false
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "AccountKycPassport": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "account": {
+          "$ref": "prisma#/definitions/Account"
+        },
+        "passportCountry": {
+          "$ref": "prisma#/definitions/Country"
+        },
+        "passportNumber": {
+          "type": "string"
+        },
+        "passportIssuedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "passportExpiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "default": false
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "AccountAddress": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "physicalAddress": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/Account"
+          }
+        },
+        "billingAddresses": {
+          "type": "array",
+          "items": {
+            "$ref": "prisma#/definitions/Account"
+          }
+        },
+        "organisation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "care_of": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address_line1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address_line2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address_line3": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "postcode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "country": {
+          "$ref": "prisma#/definitions/Country"
+        },
+        "isBusiness": {
+          "type": "boolean",
+          "default": false
+        },
+        "isVerified": {
+          "type": "boolean",
+          "default": false
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "organisation": {
+      "$ref": "prisma#/definitions/Organisation"
+    },
+    "organisationAddress": {
+      "$ref": "prisma#/definitions/OrganisationAddress"
+    },
+    "project": {
+      "$ref": "prisma#/definitions/Project"
+    },
+    "product": {
+      "$ref": "prisma#/definitions/Product"
+    },
+    "organisationAccountRole": {
+      "$ref": "prisma#/definitions/OrganisationAccountRole"
+    },
+    "projectAccountRole": {
+      "$ref": "prisma#/definitions/ProjectAccountRole"
+    },
+    "account": {
+      "$ref": "prisma#/definitions/Account"
+    },
+    "accountHuman": {
+      "$ref": "prisma#/definitions/AccountHuman"
+    },
+    "accountAuthPassword": {
+      "$ref": "prisma#/definitions/AccountAuthPassword"
+    },
+    "accountEmail": {
+      "$ref": "prisma#/definitions/AccountEmail"
+    },
+    "country": {
+      "$ref": "prisma#/definitions/Country"
+    },
+    "accountKycNationalCard": {
+      "$ref": "prisma#/definitions/AccountKycNationalCard"
+    },
+    "accountKycPassport": {
+      "$ref": "prisma#/definitions/AccountKycPassport"
+    },
+    "accountAddress": {
+      "$ref": "prisma#/definitions/AccountAddress"
+    }
+  }
+}

@@ -1,13 +1,31 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// Generate prism client
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["clientExtensions"]
   output   = "../node_modules/.prisma/client"
 }
 
-generator typegraphql {
-  provider = "typegraphql-prisma"
+// Generate a json schema
+generator jsonSchema {
+  provider = "prisma-json-schema-generator"
+  schemaId = "prisma"
+}
+
+generator docs {
+  provider = "node node_modules/prisma-docs-generator"
+  output = "../docs/prisma"
+}
+
+// Generate a dbml file for visualisation
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+generator enum {
+  provider = "node node_modules/prisma-enum-generator"
 }
 
 datasource db {
@@ -15,111 +33,240 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Organisation -> has many -> Project
+// Organisation -> has many -> OrganisationAddress
+// Organisation -> has many -> OrganisationAccountRole
 model Organisation {
   id        String               @id @default(uuid())
-  name      String               @unique
-  address   OrganisationAddress?
-  groups    OrganisationGroup[]
+  // Relationships
+  organisationRoles OrganisationAccountRole[]
+
+  // Nickname
+  friendlyName      String               @unique
+  // We use this to encrypt documents and information relevant to this organisation
+  //encryptionKeys OrganisationEncryptionKeySet[]
+  // One or more proejcts associated with this organisation
+  projects  Project[]
+  // One or more addresses associated with the company
+  addresses   OrganisationAddress[]
+  isVerified       Boolean      @default(false)
+  // This allows us to soft delete instead of removing records completely
+  isPendingDelete Boolean   @default(false)
+  pendingDeleteAt DateTime?
   // Updated Magic
   createdAt DateTime             @default(now())
-  updatedAt DateTime             @updatedAt
+  updatedAt DateTime             @updatedAt        
 }
 
+// OrganisationEncryptionKeySet -> has one -> organisation
+// model OrganisationEncryptionKeySet {
+//   organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+//   organisationId String       @unique
+//   awsKmsId String?
+//   privateKey String?
+//   publicKey String
+//   keyExpiresAt DateTime?
+
+//   // This allows us to soft delete instead of removing records completely
+//   isPendingDelete Boolean   @default(false)
+//   pendingDeleteAt DateTime?
+
+//   // Updated Magic
+//   createdAt DateTime             @default(now())
+//   updatedAt DateTime             @updatedAt     
+// }
+
+// OrganisationAddress -> belongs to -> Organisation
 model OrganisationAddress {
   id             String       @id @default(uuid())
   organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
   organisationId String       @unique
+
+  name           String?
   address_line1  String?
   address_line2  String?
   address_line3  String?
   city           String?
   state          String?
   postcode       String?
-  country        String?
-  verified       Boolean      @default(false)
+  country     Country @relation(fields: [countryId], references: [countryCode], onDelete: NoAction)
+  countryId   Int
+
+  isVerified       Boolean      @default(false)
+
   // Updated Magic
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
 }
 
-model OrganisationGroup {
+// Project -> belongs to -> Organisation
+model Project {
   id             String       @id @default(uuid())
-  name           String
-  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  // Relationships
+  projectRoles ProjectAccountRole[]
+  organisation  Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
   organisationId String
-  users          User[]
+
+  // This is auto generated if not given
+  friendlyName  String?
+
+  products Product[]
+
+  // Soft Delete
+  pendingDelete     Boolean   @default(false)
+  pendingDeleteAt   DateTime?
+
   // Updated Magic
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
 }
 
-model User {
-  id                 String                @id @default(uuid())
-  organisationGroups OrganisationGroup[]
-  // Person Details
-  userPerson         UserPerson?
-  // Addresses
-  personAddress      UserAddress?          @relation("personAddress", fields: [personAddressId], references: [id])
-  billingAddress     UserAddress?          @relation("billingAddress", fields: [billingAddressId], references: [id])
-  billingAddressId   String?               @unique
-  personAddressId    String?               @unique
-  userAddress        UserAddress?
-  // Emails
-  userEmails         UserEmail[]
-  // Phones
-  userPhones         UserPhone[]
-  // Associated Credentials
-  credPassword       UserCredPassword?
-  credMagicLink      UserCredMagicLink?
-  // Identification
-  identNationalIds   UserIdentNationalId[]
-  identPassports     UserIdentPassport[]
+// Product -> belongs to -> Project
+model Product {
+  id             String       @id @default(uuid())
+  
+  // This is auto generated if not given
+  friendlyName  String?
 
-  userAuthRole UserAuthRole @default(USER)
+  project  Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String
+
+  // Soft Delete
+  pendingDelete     Boolean   @default(false)
+  pendingDeleteAt   DateTime?
 
   // Updated Magic
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+enum OrganisationAccountRoleEnum {
+  OWNER
+  READ_WRITE
+  READ_ONLY
+  NO_ACCESS
+}
+
+model OrganisationAccountRole {
+  id                 String                @id @default(uuid())
+  // Relationships
+  account  Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  accountId String
+  organisation  Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  organisationId String
+  // Properties
+  role OrganisationAccountRoleEnum @default(NO_ACCESS)
+  // Updated Automagic
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-enum UserAuthRole {
-  USER
-  ORG_ADMIN
-  SUPER_ADMIN
+enum ProjectAccountRoleEnum {
+  OWNER
+  READ_WRITE
+  READ_ONLY
 }
 
-model UserCredPassword {
+model ProjectAccountRole {
+  id                 String                @id @default(uuid())
+  account  Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  accountId String
+  project  Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String
+  role ProjectAccountRoleEnum
+  // Updated Automagic
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Account -> has many -> organisationRoles
+// Account -> has many -> projectRoles
+// Account -> has many -> accountEmails
+// Account -> has many -> kycNationalCards
+// Account -> has many -> kycPassports
+// Account -> has one -> accountHuman
+// Account -> has one -> physicalAddress
+// Account -> has one -> billingAddress
+// Account -> has one -> authPassword
+model Account {
+  id                 String                @id @default(uuid())
+  // Relationships
+  organisationRoles OrganisationAccountRole[]
+  projectRoles ProjectAccountRole[]
+  accountHuman    AccountHuman?
+  physicalAddress    AccountAddress?          @relation("physicalAddress", fields: [physicalAddressId], references: [id])
+  physicalAddressId   String?               @unique
+  billingAddress     AccountAddress?          @relation("billingAddress", fields: [billingAddressId], references: [id])
+  billingAddressId   String?               @unique
+  accountEmails         AccountEmail[]
+  // Phones
+  //userPhones         AccountPhone[]
+  // Associated Credentials
+  authPassword       AccountAuthPassword?
+  //credMagicLink      UserCredMagicLink?
+  // Identification
+  kycNationalCards   AccountKycNationalCard[]
+  kycPassports     AccountKycPassport[]
+  // Properties
+  username          String
+  pendingDelete     Boolean   @default(false)
+  pendingDeleteAt   DateTime?
+
+  // Updated Automagic
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AccountHuman {
   id     String @id @default(uuid())
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String @unique
+  account   Account   @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  accountId String @unique
+
+  // Person Details
+  pronoun       String?
+  firstName     String
+  middleName    String?
+  lastName      String
+  preferredName String?
+  dateOfBirth   DateTime?
+
+  // Updated Automagic
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum AccountAuthPasswordEnum {
+  BCRYPT
+}
+
+model AccountAuthPassword {
+  id     String @id @default(uuid())
+  account   Account   @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  accountId String @unique
 
   password   String
-  hashType   UserCredPasswordType @default(BCRYPT)
+  hashType   AccountAuthPasswordEnum @default(BCRYPT)
   saltRounds Int                  @default(31)
   // Updated Magic
   createdAt  DateTime             @default(now())
   updatedAt  DateTime             @updatedAt
 }
 
-enum UserCredPasswordType {
-  BCRYPT
-}
+// model UserCredMagicLink {
+//   id         String   @id @default(uuid())
+//   User       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   userId     String   @unique
+//   magicToken String
+//   expiresAt  DateTime
+//   // Updated Magic
+//   createdAt  DateTime @default(now())
+//   updatedAt  DateTime @updatedAt
+// }
 
-model UserCredMagicLink {
-  id         String   @id @default(uuid())
-  User       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String   @unique
-  magicToken String
-  expiresAt  DateTime
-  // Updated Magic
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-}
-
-model UserEmail {
+model AccountEmail {
   id           String   @id @default(uuid())
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId       String
+  account         Account     @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  accountId       String
   emailAddress String   @unique
   verified     Boolean  @default(false)
   //  verifiedAt  Boolean @time
@@ -129,65 +276,49 @@ model UserEmail {
   updatedAt    DateTime @updatedAt
 }
 
-model UserPhone {
-  id             String          @id @default(uuid())
-  User           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId         String
-  userPhoneTypes UserPhoneType[]
-  number         String
-  country        String
-  verified       Boolean         @default(false)
-  primary        Boolean         @default(false)
-  // Updated Magic
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
+// model UserPhone {
+//   id             String          @id @default(uuid())
+//   User           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   userId         String
+//   userPhoneTypes UserPhoneType[]
+//   number         String
+//   country        String
+//   verified       Boolean         @default(false)
+//   primary        Boolean         @default(false)
+//   // Updated Magic
+//   createdAt      DateTime        @default(now())
+//   updatedAt      DateTime        @updatedAt
 
-  @@unique([number, country])
-}
+//   @@unique([number, country])
+// }
 
-model UserPhoneType {
-  id        String            @id @default(uuid())
-  phone     UserPhone         @relation(fields: [phoneId], references: [id], onDelete: Cascade)
-  phoneId   String
-  tech      UserPhoneTypeTech
-  // Updated Magic
-  createdAt DateTime          @default(now())
-  updatedAt DateTime          @updatedAt
-}
+// model UserPhoneType {
+//   id        String            @id @default(uuid())
+//   phone     UserPhone         @relation(fields: [phoneId], references: [id], onDelete: Cascade)
+//   phoneId   String
+//   tech      UserPhoneTypeTech
+//   // Updated Magic
+//   createdAt DateTime          @default(now())
+//   updatedAt DateTime          @updatedAt
+// }
 
-enum UserPhoneTypeTech {
-  WHATSAPP
-  SMS
-  CALL
-}
+// enum UserPhoneTypeTech {
+//   WHATSAPP
+//   SMS
+//   CALL
+// }
 
-model UserPerson {
-  id            String                   @id @default(uuid())
-  user          User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId        String                   @unique
-  pronoun       String?
-  firstName     String?
-  middleName    String?
-  lastName      String?
-  preferredName String?
-  dateOfBirth   String?
-  citizenship   CountriesOnUserPersons[]
-  // Updated Magic
-  createdAt     DateTime                 @default(now())
-  updatedAt     DateTime                 @updatedAt
-}
+// model CountriesOnUserPersons {
+//   userPerson   UserPerson @relation(fields: [userPersonId], references: [id], onDelete: Cascade)
+//   userPersonId String
+//   country      Country    @relation(fields: [countryId], references: [countryCode])
+//   countryId    Int
+//   // Updated Magic
+//   createdAt    DateTime   @default(now())
+//   updatedAt    DateTime   @updatedAt
 
-model CountriesOnUserPersons {
-  userPerson   UserPerson @relation(fields: [userPersonId], references: [id], onDelete: Cascade)
-  userPersonId String
-  country      Country    @relation(fields: [countryId], references: [countryCode])
-  countryId    Int
-  // Updated Magic
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-
-  @@id([userPersonId, countryId])
-}
+//   @@id([userPersonId, countryId])
+// }
 
 model Country {
   countryCode      Int                      @id
@@ -195,50 +326,62 @@ model Country {
   twoChar          String                   @unique
   englishName      String                   @unique
   phoneCountryCode Int
-  citizens         CountriesOnUserPersons[]
+
+  accountKycNationalCards AccountKycNationalCard[]
+  accountKycPassports AccountKycPassport[]
+  accountAddresses AccountAddress[]
+  organisationAddress OrganisationAddress[]
+
   // Updated Magic
   createdAt        DateTime                 @default(now())
   updatedAt        DateTime                 @updatedAt
 }
 
-model UserIdentNationalId {
+model AccountKycNationalCard {
   id        String    @id @default(uuid())
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String
-  type      String?
-  idNumber  String?
-  expiry    DateTime?
-  country   String?
-  verified  Boolean   @default(false)
+  // Relationships
+  account      Account      @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  accountId    String
+  country     Country @relation(fields: [countryId], references: [countryCode], onDelete: NoAction)
+  countryId   Int
+  // Properites
+  nationalCardType      String?
+  nationalCardNumber  String?  
+  issuedAt  DateTime?
+  expiresAt DateTime?
+  isVerified  Boolean   @default(false)
   // Updated Magic
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 
-  @@unique([type, idNumber, expiry, country])
+  @@unique([nationalCardType, nationalCardNumber, expiresAt, issuedAt, countryId])
 }
 
-model UserIdentPassport {
+model AccountKycPassport {
   id               String   @id @default(uuid())
-  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId           String
-  passport_number  String?
-  passport_country String?
-  passport_expiry  String?
-  verified         Boolean  @default(false)
-  // Updated Magic
+  // Relationships
+  account             Account     @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  accountId           String
+  passportCountry Country  @relation(fields: [passportCountryId], references: [countryCode], onDelete: NoAction)
+  passportCountryId Int
+  // Properites
+  passportNumber  String
+  passportIssuedAt DateTime
+  passportExpiresAt  DateTime
+  isVerified         Boolean  @default(false)  
+  // Updated Automagic
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
-
-  @@unique([passport_number, passport_country, passport_expiry])
+  // Unique Compound
+  @@unique([passportNumber, passportCountryId, passportExpiresAt])
 }
 
-model UserAddress {
+model AccountAddress {
   id               String @id @default(uuid())
-  user             User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId           String @unique
-  personAddress    User[] @relation("personAddress")
-  billingAddresses User[] @relation("billingAddress")
-
+  // Relationships
+  physicalAddress  Account[] @relation("physicalAddress")
+  billingAddresses Account[] @relation("billingAddress")
+  // Properties
   organisation  String?
   care_of       String?
   address_line1 String?
@@ -247,10 +390,12 @@ model UserAddress {
   city          String?
   state         String?
   postcode      String?
-  country       String?
-  business      Boolean  @default(false)
-  verified      Boolean  @default(false)
-  // Updated Magic
+  country     Country @relation(fields: [countryId], references: [countryCode], onDelete: NoAction)
+  countryId   Int
+
+  isBusiness      Boolean  @default(false)
+  isVerified      Boolean  @default(false)
+  // Updated Automagic
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }

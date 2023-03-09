@@ -1,0 +1,260 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Organisation {
+  id String [pk]
+  organisationRoles OrganisationAccountRole [not null]
+  friendlyName String [unique, not null]
+  projects Project [not null]
+  addresses OrganisationAddress [not null]
+  isVerified Boolean [not null, default: false]
+  isPendingDelete Boolean [not null, default: false]
+  pendingDeleteAt DateTime
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table OrganisationAddress {
+  id String [pk]
+  organisation Organisation [not null]
+  organisationId String [unique, not null]
+  name String
+  address_line1 String
+  address_line2 String
+  address_line3 String
+  city String
+  state String
+  postcode String
+  country Country [not null]
+  countryId Int [not null]
+  isVerified Boolean [not null, default: false]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Project {
+  id String [pk]
+  projectRoles ProjectAccountRole [not null]
+  organisation Organisation [not null]
+  organisationId String [not null]
+  friendlyName String
+  products Product [not null]
+  pendingDelete Boolean [not null, default: false]
+  pendingDeleteAt DateTime
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Product {
+  id String [pk]
+  friendlyName String
+  project Project [not null]
+  projectId String [not null]
+  pendingDelete Boolean [not null, default: false]
+  pendingDeleteAt DateTime
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table OrganisationAccountRole {
+  id String [pk]
+  account Account [not null]
+  accountId String [not null]
+  organisation Organisation [not null]
+  organisationId String [not null]
+  role OrganisationAccountRoleEnum [not null, default: 'NO_ACCESS']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table ProjectAccountRole {
+  id String [pk]
+  account Account [not null]
+  accountId String [not null]
+  project Project [not null]
+  projectId String [not null]
+  role ProjectAccountRoleEnum [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Account {
+  id String [pk]
+  organisationRoles OrganisationAccountRole [not null]
+  projectRoles ProjectAccountRole [not null]
+  accountHuman AccountHuman
+  physicalAddress AccountAddress
+  physicalAddressId String [unique]
+  billingAddress AccountAddress
+  billingAddressId String [unique]
+  accountEmails AccountEmail [not null]
+  authPassword AccountAuthPassword
+  kycNationalCards AccountKycNationalCard [not null]
+  kycPassports AccountKycPassport [not null]
+  username String [not null]
+  pendingDelete Boolean [not null, default: false]
+  pendingDeleteAt DateTime
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table AccountHuman {
+  id String [pk]
+  account Account [not null]
+  accountId String [unique, not null]
+  pronoun String
+  firstName String [not null]
+  middleName String
+  lastName String [not null]
+  preferredName String
+  dateOfBirth DateTime
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table AccountAuthPassword {
+  id String [pk]
+  account Account [not null]
+  accountId String [unique, not null]
+  password String [not null]
+  hashType AccountAuthPasswordEnum [not null, default: 'BCRYPT']
+  saltRounds Int [not null, default: 31]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table AccountEmail {
+  id String [pk]
+  account Account [not null]
+  accountId String [not null]
+  emailAddress String [unique, not null]
+  verified Boolean [not null, default: false]
+  primary Boolean [not null, default: false]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Country {
+  countryCode Int [pk]
+  threeChar String [unique, not null]
+  twoChar String [unique, not null]
+  englishName String [unique, not null]
+  phoneCountryCode Int [not null]
+  accountKycNationalCards AccountKycNationalCard [not null]
+  accountKycPassports AccountKycPassport [not null]
+  accountAddresses AccountAddress [not null]
+  organisationAddress OrganisationAddress [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table AccountKycNationalCard {
+  id String [pk]
+  account Account [not null]
+  accountId String [not null]
+  country Country [not null]
+  countryId Int [not null]
+  nationalCardType String
+  nationalCardNumber String
+  issuedAt DateTime
+  expiresAt DateTime
+  isVerified Boolean [not null, default: false]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (nationalCardType, nationalCardNumber, expiresAt, issuedAt, countryId) [unique]
+  }
+}
+
+Table AccountKycPassport {
+  id String [pk]
+  account Account [not null]
+  accountId String [not null]
+  passportCountry Country [not null]
+  passportCountryId Int [not null]
+  passportNumber String [not null]
+  passportIssuedAt DateTime [not null]
+  passportExpiresAt DateTime [not null]
+  isVerified Boolean [not null, default: false]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (passportNumber, passportCountryId, passportExpiresAt) [unique]
+  }
+}
+
+Table AccountAddress {
+  id String [pk]
+  physicalAddress Account [not null]
+  billingAddresses Account [not null]
+  organisation String
+  care_of String
+  address_line1 String
+  address_line2 String
+  address_line3 String
+  city String
+  state String
+  postcode String
+  country Country [not null]
+  countryId Int [not null]
+  isBusiness Boolean [not null, default: false]
+  isVerified Boolean [not null, default: false]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Enum OrganisationAccountRoleEnum {
+  OWNER
+  READ_WRITE
+  READ_ONLY
+  NO_ACCESS
+}
+
+Enum ProjectAccountRoleEnum {
+  OWNER
+  READ_WRITE
+  READ_ONLY
+}
+
+Enum AccountAuthPasswordEnum {
+  BCRYPT
+}
+
+Ref: OrganisationAddress.organisationId > Organisation.id [delete: Cascade]
+
+Ref: OrganisationAddress.countryId > Country.countryCode [delete: No Action]
+
+Ref: Project.organisationId > Organisation.id [delete: Cascade]
+
+Ref: Product.projectId > Project.id [delete: Cascade]
+
+Ref: OrganisationAccountRole.accountId > Account.id [delete: Cascade]
+
+Ref: OrganisationAccountRole.organisationId > Organisation.id [delete: Cascade]
+
+Ref: ProjectAccountRole.accountId > Account.id [delete: Cascade]
+
+Ref: ProjectAccountRole.projectId > Project.id [delete: Cascade]
+
+Ref: Account.physicalAddressId > AccountAddress.id
+
+Ref: Account.billingAddressId > AccountAddress.id
+
+Ref: AccountHuman.accountId - Account.id [delete: Cascade]
+
+Ref: AccountAuthPassword.accountId - Account.id [delete: Cascade]
+
+Ref: AccountEmail.accountId > Account.id [delete: Cascade]
+
+Ref: AccountKycNationalCard.accountId > Account.id [delete: Cascade]
+
+Ref: AccountKycNationalCard.countryId > Country.countryCode [delete: No Action]
+
+Ref: AccountKycPassport.accountId > Account.id [delete: Cascade]
+
+Ref: AccountKycPassport.passportCountryId > Country.countryCode [delete: No Action]
+
+Ref: AccountAddress.countryId > Country.countryCode [delete: No Action]

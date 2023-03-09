@@ -1,75 +1,40 @@
-import * as dotenv from 'dotenv'
-dotenv.config()
-import * as path from 'path'
-import loadCustomPrismaMiddleware from './middleware/prisma';
-import fastify, { FastifyRequest, FastifyReply } from 'fastify'
-import { createYoga } from 'graphql-yoga'
-import { buildSchema } from "type-graphql"
-import { PrismaClient } from '.prisma/client'
-import { resolvers } from '@generated/type-graphql'
+import { join } from 'path'
+import AutoLoad, {AutoloadPluginOptions} from '@fastify/autoload'
+import { FastifyPluginAsync } from 'fastify'
+import * as jsonSchema from '../prisma/json-schema/json-schema.json'
 
-const prisma: PrismaClient = new PrismaClient()
-// Import custom prisma middlewares
-loadCustomPrismaMiddleware(prisma)
-await prisma.$connect()
+export type AppOptions = {
+  // Place your custom options for app below here.
+} & Partial<AutoloadPluginOptions>;
 
-// This is the fastify instance you have created
-const app = fastify({ logger: true })
-const schema = await buildSchema({
-  resolvers,
-  emitSchemaFile: path.resolve(__dirname, "./generated-schema.graphql"),
-  validate: false,
-})
+// Pass --options via CLI arguments in command to enable these options.
+const options: AppOptions = {
+}
 
-const yoga = createYoga<{
-  schema,
-  req: FastifyRequest
-  reply: FastifyReply
-}>({
-  // Integrate Fastify logger
-  logging: {
-    debug: (...args) => args.forEach((arg) => app.log.debug(arg)),
-    info: (...args) => args.forEach((arg) => app.log.info(arg)),
-    warn: (...args) => args.forEach((arg) => app.log.warn(arg)),
-    error: (...args) => args.forEach((arg) => app.log.error(arg))
-  }
-})
+const app: FastifyPluginAsync<AppOptions> = async (
+    fastify,
+    opts
+): Promise<void> => {
+  // Load up our schema
+  void fastify.addSchema(jsonSchema)
 
-// This will allow Fastify to forward multipart requests to GraphQL Yoga
-//app.addContentTypeParser('multipart/form-data', {}, (req, payload, done) =>
-//  done(null)
-//)
- 
-/**
- * We pass the incoming HTTP request to GraphQL Yoga
- * and handle the response using Fastify's `reply` API
- * Learn more about `reply` https://www.fastify.io/docs/latest/Reply/
- **/
-app.route({
-  url: '/graphql',
-  method: ['GET', 'POST', 'OPTIONS'],
-  handler: async (req, reply) => {
-    // Second parameter adds Fastify's `req` and `reply` to the GraphQL Context
-    const response = await yoga.handleNodeRequest(req, {
-      req,
-      reply
-    })
-    response.headers.forEach((value, key) => {
-      reply.header(key, value)
-    })
- 
-    reply.status(response.status)
- 
-    reply.send(response.body)
- 
-    return reply
-  }
-})
- 
-app.listen({ port: process.env.PORT || 8080 }, (err, address) => {
-  if (err) {
-    console.error(err)
-    process.exit(1)
-  }
-  console.log(`Server listening at ${address}`)
-})
+  // Do not touch the following lines
+
+  // This loads all plugins defined in plugins
+  // those should be support plugins that are reused
+  // through your application
+  void fastify.register(AutoLoad, {
+    dir: join(__dirname, 'plugins'),
+    options: opts
+  })
+
+  // This loads all plugins defined in routes
+  // define your routes in one of these
+  void fastify.register(AutoLoad, {
+    dir: join(__dirname, 'routes'),
+    options: opts
+  })
+}
+
+export default app;
+export { app, options }
